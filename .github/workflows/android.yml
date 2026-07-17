@@ -7,22 +7,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Get Date
-        id: get-date
-        run: |
-          echo "date=$(date -u +'%Y%m%d')" >> $GITHUB_OUTPUT
-        shell: bash
-
-      - name: Cache Buildozer global directory
-        uses: actions/cache@v3
-        with:
-          path: ~/.buildozer
-          key: buildozer-global-${{ runner.os }}-${{ steps.get-date.outputs.date }}
+      - uses: actions/checkout@v4
 
       - name: Build with Buildozer
-        uses: ArtemSanya/buildozer-action@v1
+        uses: kusyar/buildozer-action@v1
         with:
           workdir: .
-          buildozer_version: stable
